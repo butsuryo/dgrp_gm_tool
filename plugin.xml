@@ -133,7 +133,7 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="dev_ClassTrial.application"
+            application="dgrp_gm_tool.application"
             name="classtrial">
          <property
                name="appName"
