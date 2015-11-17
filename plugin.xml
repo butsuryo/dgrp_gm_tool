@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="dgrp.Application">
+         </run>
+      </application>
+   </extension>
+
+
+   <!-- ビュー -->
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="データビュー"
+            class="dgrp.warewolf.view.WareWolfDataView"
+            id="dataview">
+      </view>
+
+      <view
+            name="ステータスビュー"
+            class="dgrp.warewolf.view.WareWolfStatusView"
+            id="statusview">
+      </view>
+
+      <view
+            name="進行ビュー"
+            class="dgrp.warewolf.view.WareWolfProgressionView"
+            id="progressionview">
+      </view>
+   </extension>
+
+
+   <!-- パースペクティブ -->
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Perspective"
+            class="dgrp.Perspective"
+            id="dgrp.perspective">
+      </perspective>
+   </extension>
+
+
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+
+      <perspectiveExtension targetID="*">
+         <view
+               standalone="false"
+               minimized="true"
+               closeable="false"
+               relative="org.eclipse.ui.editorss"
+               relationship="bottom"
+               ratio="0.4"
+               id="dataview">
+         </view>
+         <view
+               standalone="false"
+               minimized="true"
+               closeable="false"
+               relative="org.eclipse.ui.editorss"
+               relationship="right"
+               ratio="0.6"
+               id="statusview">
+         </view>
+         <view
+               standalone="false"
+               minimized="true"
+               closeable="false"
+               relative="org.eclipse.ui.editorss"
+               relationship="left"
+               ratio="0.4"
+               id="progressionview">
+         </view>
+      </perspectiveExtension>
+   </extension>
+
+
+   <!-- メニュー定義 -->
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+
+         <menu label="ファイル">
+            <command
+                commandId="org.eclipse.ui.file.exit"
+                label="終了">
+            </command>
+         </menu>
+
+         <menu label="ゲーム" id="hage">
+             <command
+                commandId="classTrial"
+                label="リアル(じゃない)学級裁判">
+             </command>
+             <command
+                commandId="wareWolf"
+                label="超高校級の人狼【開発中】">
+             </command>
+         </menu>
+
+      </menuContribution>
+   </extension>
+
+
+   <!-- ウィザード起動ハンドラ -->
+   <extension
+       point="org.eclipse.ui.handlers">
+      <handler
+          class="dgrp.classtrial.ClassTrialHandler"
+          commandId="classTrial">
+      </handler>
+      <handler
+          class="dgrp.warewolf.WareWolfHandler"
+          commandId="wareWolf">
+      </handler>
+   </extension>
+
+
+   <!-- プリファレンス -->
+   <extension
+      point="org.eclipse.core.runtime.preferences">
+      <initializer class="dgrp.DgrpPreferenceInitializer"/>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="dev_ClassTrial.application"
+            name="classtrial">
+         <property
+               name="appName"
+               value="classtrial">
+         </property>
+      </product>
+   </extension>
+
+</plugin>
